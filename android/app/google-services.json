@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "703269256187",
+    "project_id": "languagex-97ee0",
+    "storage_bucket": "languagex-97ee0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:703269256187:android:624d5cd67c2136c00d695e",
+        "android_client_info": {
+          "package_name": "com.definex.languagex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "703269256187-p89ut3ohdbah8p97iepup54qd6vu1k7p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd6GU0MdutNYTcmUcfjv0iGbTqe4ZhYI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "703269256187-p89ut3ohdbah8p97iepup54qd6vu1k7p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "703269256187-c29i19chok23fpptl9msgjfdb22gabsr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.definex.languagex"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

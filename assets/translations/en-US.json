@@ -1,0 +1,32 @@
+{
+  "appName": "Languagex",
+  "turkish": "Turkish",
+  "english": "English",
+  "ok": "OK",
+  "cancel": "Cancel",
+  "january": "January",
+  "february": "February",
+  "march": "March",
+  "april": "April",
+  "may": "May",
+  "june": "June",
+  "july": "July",
+  "august": "August",
+  "september": "September",
+  "october": "October",
+  "november": "November",
+  "december": "December",
+  "genericError": "Something went wrong.",
+  "networkError": "Please check your internet connection.",
+  "connectionTimeOut": "Connection timeout. Please try again.",
+  "accessStoragePermission": "Please allow storage access.",
+  "accessCameraPermission": "Please allow camera access",
+  "accessGalleryPermission": "Please allow gallery access",
+  "accessLocationPermission": "Please allow location access",
+  "error": "Error",
+  "writing": "Writing",
+  "test": "Test",
+  "speaking": "Speaking"
+
+
+}

@@ -10,6 +10,7 @@ import '../../../core/resources/_r.dart';
 import '../../../core/utils/general_data.dart';
 import '../../widgets/widget_app_bar.dart';
 import '../../widgets/widget_empty_view.dart';
+import 'home_page.dart';
 import 'vm_fragment_expense.dart';
 
 class FragmentExpense extends StatefulWidget {
@@ -119,6 +120,6 @@ class _FragmentExpenseState extends State<FragmentExpense> with AutomaticKeepAli
   }
 
   Widget _getBody(BuildContext context, ViewModelFragmentExpense viewModel) {
-    return Container();
+    return const HomePage();
   }
 }

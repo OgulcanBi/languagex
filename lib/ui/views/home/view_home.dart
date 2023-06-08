@@ -21,10 +21,7 @@ class _ViewHomeState extends State<ViewHome> with BaseView {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (GeneralData.getInstance().notificationId != null) {
-        router(context).startNewView(route: ViewCreateExpenseFormRoute());
-        GeneralData.getInstance().notificationId = null;
-      }
+
     });
   }
 

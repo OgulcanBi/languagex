@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:languagex/core/enums/enum_app.dart';
-import 'package:languagex/core/enums/enum_permission.dart';
 import 'package:languagex/core/extensions/extension_list.dart';
 import 'package:languagex/ui/base/base_view_model.dart';
 
 import '../../../core/resources/_r.dart';
 
-class ViewModelFragmentExpense extends ViewModelBase {
+class ViewModelFragmentSpeaking extends ViewModelBase {
   final ScrollController scrollController = ScrollController();
   double scrollPadding = 0.0;
   final double topBarSize;
@@ -14,7 +13,7 @@ class ViewModelFragmentExpense extends ViewModelBase {
   final List<Tab> tabs = [];
   bool hasApprovePermission = false;
 
-  ViewModelFragmentExpense(this.topBarSize) {
+  ViewModelFragmentSpeaking(this.topBarSize) {
     initListeners();
   }
 
@@ -27,5 +26,7 @@ class ViewModelFragmentExpense extends ViewModelBase {
       notifyListeners();
     });
   }
+
+
 
 }

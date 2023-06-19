@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/resources/_r.dart';
+import '../../core/resources/_r.dart';
 
 class FeatureBox extends StatelessWidget {
   final Color color;

@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:languagex/core/enums/enum_app.dart';
-import 'package:languagex/core/enums/enum_permission.dart';
-import 'package:languagex/core/extensions/extension_list.dart';
-import 'package:languagex/core/models/model_push_token.dart';
 import 'package:languagex/core/models/model_tab.dart';
-import 'package:languagex/core/models/model_tab_permission.dart';
 import 'package:languagex/core/services/service_api.dart';
-import 'package:languagex/core/services/service_firebase.dart';
-import 'package:languagex/core/utils/general_data.dart';
 import 'package:languagex/ui/base/base_view_model.dart';
-import 'package:languagex/ui/fragments/expense/fragment_expense.dart';
-import 'package:languagex/ui/fragments/finance/fragment_finance.dart';
 import 'package:languagex/ui/fragments/home/fragment_home.dart';
 import 'package:languagex/ui/fragments/timesheet/fragment_timesheet.dart';
 
 import '../../../core/resources/_r.dart';
+import '../../fragments/speaking/fragment_speaking.dart';
+import '../../fragments/writting/fragment_writting.dart';
 
 class ViewModelHome extends ViewModelBase {
   final ServiceApi serviceApi;
@@ -37,13 +30,12 @@ class ViewModelHome extends ViewModelBase {
   }
 
   init() {
-      fragments.add(const FragmentFinance());
-      tabs.add(ModelTab(title: R.string.writing, activeIcon: R.drawable.svg.iconFinanceActive, inActiveIcon: R.drawable.svg.iconFinanceInactive));
-      fragments.add(FragmentExpense(key: expenseKey));
-      tabs.add(ModelTab(title: R.string.speaking, activeIcon: R.drawable.svg.iconExpenseActive, inActiveIcon: R.drawable.svg.iconExpenseInactive));
-      fragments.add(const FragmentTimesheet());
-      tabs.add(ModelTab(title: R.string.test, activeIcon: R.drawable.svg.iconTimesheetActive, inActiveIcon: R.drawable.svg.iconTimesheetInactive));
-
+    fragments.add(const FragmentWritting());
+    tabs.add(ModelTab(title: R.string.writing, activeIcon: R.drawable.svg.iconFinanceActive, inActiveIcon: R.drawable.svg.iconFinanceInactive));
+    fragments.add(FragmentSpeaking(key: expenseKey));
+    tabs.add(ModelTab(title: R.string.speaking, activeIcon: R.drawable.svg.iconExpenseActive, inActiveIcon: R.drawable.svg.iconExpenseInactive));
+    fragments.add(const FragmentTimesheet());
+    tabs.add(ModelTab(title: R.string.test, activeIcon: R.drawable.svg.iconTimesheetActive, inActiveIcon: R.drawable.svg.iconTimesheetInactive));
   }
 
   void setSelectedPageIndex(int index) {
@@ -51,9 +43,4 @@ class ViewModelHome extends ViewModelBase {
     pageController.jumpToPage(selectedPageIndex);
     notifyListeners();
   }
-
-
-
-
-
 }

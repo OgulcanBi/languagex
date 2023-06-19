@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:languagex/core/enums/enum_app.dart';
-import 'package:languagex/core/extensions/extension_int.dart';
-import 'package:languagex/core/extensions/extension_string.dart';
-import 'package:languagex/core/models/model_alert_dialog.dart';
-import 'package:languagex/core/services/router.gr.dart';
-import 'package:languagex/core/utils/general_data.dart';
-import 'package:languagex/core/utils/utilities.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:languagex/core/models/model_alert_dialog.dart';
+import 'package:languagex/core/utils/utilities.dart';
 import 'package:languagex/ui/base/base_view.dart';
 import 'package:languagex/ui/widgets/widget_button.dart';
-import 'package:languagex/ui/widgets/widget_donut_chart.dart';
-import 'package:languagex/ui/widgets/widgets_chargeability_graph.dart';
-import 'package:languagex/ui/widgets/widgets_remaining_timesheet_indicator.dart';
-import 'package:languagex/ui/widgets/widgets_text.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
-import '../../../core/models/model_chargeability_graph_item.dart';
 import '../../../core/resources/_r.dart';
-import '../../bs/bs_filter_timesheet_graph.dart';
-import '../../bs/bs_multi_wbs_selection.dart';
 import '../../views/home/vm_home.dart';
 import '../../widgets/widget_app_bar.dart';
-import '../../widgets/widget_bar_chart.dart';
-import '../../widgets/widget_filter_graph.dart';
 import '../../widgets/widget_scroll.dart';
 import 'vm_fragment_home.dart';
 
@@ -48,8 +34,15 @@ class _FragmentHomeState extends State<FragmentHome> with AutomaticKeepAliveClie
       model: ViewModelFragmentHome(apiService(context)),
       builder: (context, viewModel) {
         initListener(context, viewModel);
-        return Scaffold(
-          backgroundColor: R.color.viewBg,
+        return ScaffoldGradientBackground(
+          gradient: LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            colors: [
+              R.color.gray.shade300,
+              R.color.gray.shade400,
+            ],
+          ),
           body: _getBody(context, viewModel),
           appBar: _getAppBar(
             context,
@@ -62,6 +55,7 @@ class _FragmentHomeState extends State<FragmentHome> with AutomaticKeepAliveClie
 
   AppBarBasic _getAppBar(BuildContext context, ViewModelFragmentHome viewModel) {
     return AppBarBasic(
+      bgColor: R.color.gray.shade700,
       leading: SvgPicture.asset(
         R.drawable.svg.logo,
         height: 20.0,

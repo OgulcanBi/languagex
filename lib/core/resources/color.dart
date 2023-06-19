@@ -18,6 +18,9 @@ class AppColor {
   final Color actionSheetTitle = const Color(0xFFEBEBF5);
 
   final Color bottomSheetRadiusColor = const Color(0xFF858585);
+  final Color bottomNavigatorColor = const Color(0xFFF9432B);
+
+
 
   final MaterialColor primary = MaterialColor(0xFF0037FF, {
     25: const Color(0xFFFCFAFF),
@@ -31,6 +34,12 @@ class AppColor {
     700: const Color(0xFF0031E4),
     800: const Color(0xFF002BC6),
     900: const Color(0xFF0023A1),
+  });
+  final MaterialColor dark = MaterialColor(0xFF130240, {
+
+    100: const Color(0xFF130240),
+    200: const Color(0xFF3247CF),
+
   });
 
   final MaterialColor gray = MaterialColor(0xFF475467, {

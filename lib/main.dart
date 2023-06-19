@@ -25,8 +25,8 @@ Future<void> main() async {
         color: R.color.primary,
         location: BannerLocation.topEnd,
         variables: {
-          'baseUrl': 'https://api-languagex.definexlabs.com/api/',
-          'fileUrl': 'https://api-languagex.definexlabs.com/',
+          'baseUrl': 'https://api.openai.com/v1/',
+          'fileUrl': 'https://api.openai.com/v1/',
         },
       );
 

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:languagex/ui/base/base_view.dart';
-import 'package:languagex/ui/widgets/widget_tabbar.dart';
-import 'package:languagex/ui/widgets/widgets_text.dart';
 
 import '../../../core/resources/_r.dart';
-import '../../widgets/widget_app_bar.dart';
 import 'vm_fragment_timesheet.dart';
 
 class FragmentTimesheet extends StatefulWidget {
@@ -23,7 +20,10 @@ class _FragmentTimesheetState extends State<FragmentTimesheet> with AutomaticKee
     super.build(context);
     return WidgetBase<ViewModelFragmentTimesheet>(
       isActiveLoadingIndicator: true,
-      model: ViewModelFragmentTimesheet(systemPadding(context).top),
+      model: ViewModelFragmentTimesheet(
+        systemPadding(context).top,
+        apiService(context),
+      ),
       builder: (context, viewModel) {
         initListener(context, viewModel);
         return Scaffold(
@@ -37,7 +37,6 @@ class _FragmentTimesheetState extends State<FragmentTimesheet> with AutomaticKee
 
   Widget _getBody(BuildContext context, ViewModelFragmentTimesheet viewModel) {
     return Container(
-
     );
   }
 }

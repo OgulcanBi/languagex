@@ -9,6 +9,7 @@ import 'package:languagex/core/services/router.gr.dart';
 import 'package:languagex/core/services/service_device_info.dart';
 import 'package:languagex/core/services/service_firebase.dart';
 import 'package:languagex/core/utils/utilities.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '/ui/animations/splash_transition.dart';
 import '../../../core/resources/_r.dart';
@@ -24,12 +25,19 @@ class ViewSplash extends StatelessWidget with BaseView {
     di<ServiceDeviceInfo>(context);
     return WidgetBase<ViewModelSplash>(
         isActiveLoadingIndicator: true,
-        statusbarBrightness: router(context).uiBrightnessStyle.light(systemNavigationBarColor: R.color.primary),
+        statusbarBrightness: router(context).uiBrightnessStyle.light(systemNavigationBarColor: R.color.dark.shade100),
         model: ViewModelSplash(apiService(context)),
         builder: (context, viewModel) {
           initListener(context, viewModel);
-          return Scaffold(
-            backgroundColor: R.color.primary,
+          return ScaffoldGradientBackground(
+            gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              colors: [
+                R.color.dark.shade100,
+                R.color.black,
+              ],
+            ),
             body: _getBody(context, viewModel),
           );
         });
@@ -37,15 +45,11 @@ class ViewSplash extends StatelessWidget with BaseView {
 
   Widget _getBody(BuildContext context, ViewModelSplash viewModel) {
     return Container(
-      color: R.color.primary,
       child: TransitionSplash(
         child: FadeInLeft(
           child: SvgPicture.asset(
             R.drawable.svg.logo,
-            colorFilter: ColorFilter.mode(
-              R.color.white,
-              BlendMode.srcIn,
-            ),
+
           ),
         ),
         onFinish: () async {

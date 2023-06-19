@@ -11,7 +11,9 @@ import 'package:languagex/core/models/model_user_wbs.dart';
 import 'package:languagex/core/models/response_int.dart';
 import 'package:languagex/core/models/response_string.dart';
 
+import '../models/chatgpt_model.dart';
 import '/core/models/model_alert_dialog.dart';
+import '../models/Chatgpt_response.dart';
 import '../models/model_active_period.dart';
 import '../models/model_check_timesheet.dart';
 import '../models/model_create_expense.dart';
@@ -355,31 +357,30 @@ class ServiceJsonMapperContext {
 
       typeOf<List<ModelCollection>>(): (value) => value.cast<ModelCollection>(),
       typeOf<Set<ModelCollection>>(): (value) => value.cast<ModelCollection>(),
-
       typeOf<List<ModelBilling>>(): (value) => value.cast<ModelBilling>(),
       typeOf<Set<ModelBilling>>(): (value) => value.cast<ModelBilling>(),
-
       typeOf<List<ModelMobileInvoice>>(): (value) => value.cast<ModelMobileInvoice>(),
       typeOf<Set<ModelMobileInvoice>>(): (value) => value.cast<ModelMobileInvoice>(),
-
       typeOf<List<ModelMobileInvoiceGraphicReportResponse>>(): (value) => value.cast<ModelMobileInvoiceGraphicReportResponse>(),
       typeOf<Set<ModelMobileInvoiceGraphicReportResponse>>(): (value) => value.cast<ModelMobileInvoiceGraphicReportResponse>(),
 
-      typeOf<List<ResponseExpensePdf>>(): (value) => value.cast<ResponseExpensePdf>(),
-      typeOf<Set<ResponseExpensePdf>>(): (value) => value.cast<ResponseExpensePdf>(),
+      typeOf<List<Usage>>(): (value) => value.cast<Usage>(),
+      typeOf<Set<Usage>>(): (value) => value.cast<Usage>(),
 
-      typeOf<List<ModelExpensePdfById>>(): (value) => value.cast<ModelExpensePdfById>(),
-      typeOf<Set<ModelExpensePdfById>>(): (value) => value.cast<ModelExpensePdfById>(),
-      typeOf<List<ModelExpenseFormExport>>(): (value) => value.cast<ModelExpenseFormExport>(),
-      typeOf<Set<ModelExpenseFormExport>>(): (value) => value.cast<ModelExpenseFormExport>(),
-      typeOf<List<ModelExpensePdf>>(): (value) => value.cast<ModelExpensePdf>(),
-      typeOf<Set<ModelExpensePdf>>(): (value) => value.cast<ModelExpensePdf>(),
-      typeOf<List<ModelPermission>>(): (value) => value.cast<ModelPermission>(),
-      typeOf<Set<ModelPermission>>(): (value) => value.cast<ModelPermission>(),
-      typeOf<List<ResponseExpenseReport>>(): (value) => value.cast<ResponseExpenseReport>(),
-      typeOf<Set<ResponseExpenseReport>>(): (value) => value.cast<ResponseExpenseReport>(),
-      typeOf<List<ModelExpenseReport>>(): (value) => value.cast<ModelExpenseReport>(),
-      typeOf<Set<ModelExpenseReport>>(): (value) => value.cast<ModelExpenseReport>(),
+      typeOf<List<Message>>(): (value) => value.cast<Message>(),
+      typeOf<Set<Message>>(): (value) => value.cast<Message>(),
+
+      typeOf<List<Choices>>(): (value) => value.cast<Choices>(),
+      typeOf<Set<Choices>>(): (value) => value.cast<Choices>(),
+
+      typeOf<List<ChatgptResponse>>(): (value) => value.cast<ChatgptResponse>(),
+      typeOf<Set<ChatgptResponse>>(): (value) => value.cast<ChatgptResponse>(),
+
+      typeOf<List<Messages>>(): (value) => value.cast<Messages>(),
+      typeOf<Set<Messages>>(): (value) => value.cast<Messages>(),
+
+      typeOf<List<ChatgptModel>>(): (value) => value.cast<ChatgptModel>(),
+      typeOf<Set<ChatgptModel>>(): (value) => value.cast<ChatgptModel>(),
     }));
   }
 }

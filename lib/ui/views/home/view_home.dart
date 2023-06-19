@@ -58,14 +58,14 @@ class _ViewHomeState extends State<ViewHome> with BaseView {
             decoration: BoxDecoration(border: Border(top: BorderSide(color: R.color.borderBottomNav, width: 1.0))),
             child: BottomNavigationBar(
               elevation: 0.0,
-              backgroundColor: R.color.white,
+              backgroundColor: R.color.gray.shade700,
               currentIndex: viewModel.selectedPageIndex,
               onTap: viewModel.setSelectedPageIndex,
-              selectedLabelStyle: TextStyle(fontSize: 10.0, fontFamily: R.fonts.interSemiBold, color: R.color.primary, fontWeight: FontWeight.w600),
-              unselectedLabelStyle: TextStyle(fontSize: 10.0, fontFamily: R.fonts.interMedium, color: R.color.gray.shade400, fontWeight: FontWeight.w500),
+              selectedLabelStyle: TextStyle(fontSize: 10.0, fontFamily: R.fonts.interSemiBold, color: R.color.bottomNavigatorColor, fontWeight: FontWeight.w600),
+              unselectedLabelStyle: TextStyle(fontSize: 10.0, fontFamily: R.fonts.interMedium, color: R.color.white, fontWeight: FontWeight.w500),
               type: BottomNavigationBarType.fixed,
-              selectedItemColor: R.color.primary,
-              unselectedItemColor: R.color.gray,
+              selectedItemColor: R.color.bottomNavigatorColor,
+              unselectedItemColor: R.color.white,
               items: List.generate(viewModel.tabs.length, (index) {
                 var item = viewModel.tabs[index];
                 return _getBottomNavigationBarItem(context, viewModel, item);

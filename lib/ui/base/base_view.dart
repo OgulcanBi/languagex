@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:languagex/core/models/model_alert_dialog.dart';
 import 'package:languagex/core/resources/_r.dart';
 import 'package:languagex/core/services/service_api.dart';
 import 'package:languagex/core/services/service_route.dart';
 import 'package:languagex/core/utils/utilities.dart';
-import '../../core/services/router.gr.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/enums/enum_app.dart';
 import '../../core/services/service_app.dart';
 import '../../core/utils/general_data.dart';
-import '../../ui/widgets/activity_indicator.dart';
-import '../../core/enums/enum_app.dart';
-
 import 'base_view_model.dart';
 
 class WidgetBase<T extends ViewModelBase> extends StatelessWidget with BaseView {
@@ -41,7 +40,14 @@ class WidgetBase<T extends ViewModelBase> extends StatelessWidget with BaseView 
                         return Stack(
                           children: [
                             builder!(context, viewModel),
-                            viewModel.activityState == ActivityState.isLoading ? const ActivityIndicator() : Container(),
+                            viewModel.activityState == ActivityState.isLoading
+                                ? Center(
+                                    child: LoadingAnimationWidget.twistingDots(
+                                    leftDotColor: R.color.bottomNavigatorColor,
+                                    rightDotColor: R.color.gray.shade600,
+                                    size: 100,
+                                  ))
+                                : Container(),
                           ],
                         );
                       },

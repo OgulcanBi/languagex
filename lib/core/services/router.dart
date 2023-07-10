@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:languagex/ui/fragments/writting/result/fragment_writting_result.dart';
 
 
 
@@ -11,6 +12,7 @@ import '../../ui/views/splash/view_splash.dart';
   routes: [
     AutoRoute(path: '/splash', page: ViewSplash),
     CustomRoute(path: '/home', page: ViewHome, transitionsBuilder: TransitionsBuilders.fadeIn, durationInMilliseconds: 300),
+    CustomRoute(path: '/writing/result', page: FragmentWrittingResult, transitionsBuilder: TransitionsBuilders.fadeIn, durationInMilliseconds: 300),
     CustomRoute(path: '/file-viewer/:path', page: ViewFileViewer, transitionsBuilder: TransitionsBuilders.fadeIn),
     RedirectRoute(path: '*', redirectTo: '/splash'),
   ],

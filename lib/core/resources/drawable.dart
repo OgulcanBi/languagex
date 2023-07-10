@@ -20,6 +20,7 @@ class _SvgDrawable {
 
   final String iconExpenseActive = 'assets/svg/bottombar/icon-expense-active.svg';
   final String iconExpenseInactive = 'assets/svg/bottombar/icon-expense-inactive.svg';
+  final String writingResult = 'assets/svg/result';
 
   final String iconTimesheetActive = 'assets/svg/bottombar/icon-timesheet-active.svg';
   final String iconTimesheetInactive = 'assets/svg/bottombar/icon-timesheet-inactive.svg';

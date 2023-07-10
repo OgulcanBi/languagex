@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:languagex/core/services/router.gr.dart';
 import 'package:languagex/ui/base/base_view.dart';
 import 'package:languagex/ui/fragments/writting/vm_fragment_writting.dart';
 import 'package:languagex/ui/widgets/widget_button.dart';
@@ -254,11 +255,9 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
       child: ButtonBasic(
         bgColor: R.color.bottomNavigatorColor,
         onPressed: () async {
-
           String text = viewModel.descriptionController.text;
-          viewModel.descriptionController.text = "";
-          viewModel.descriptionController.text = await viewModel.checkText(text);
 
+          router(context).startNewView(route: FragmentWrittingResultRoute(result: await viewModel.checkText(text)));
         },
         text: 'test',
         fontFamily: R.fonts.interSemiBold,

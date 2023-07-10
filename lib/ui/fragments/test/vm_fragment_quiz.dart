@@ -7,7 +7,7 @@ import 'package:languagex/ui/fragments/speaking/secrets.dart';
 import '../../../core/enums/enum_app.dart';
 import '../../../core/services/service_api.dart';
 
-class ViewModelFragmentTimesheet extends ViewModelBase {
+class ViewModelFragmentTest extends ViewModelBase {
   final ServiceApi serviceApi;
   final ScrollController scrollController = ScrollController();
   double scrollPadding = 0.0;
@@ -16,18 +16,18 @@ class ViewModelFragmentTimesheet extends ViewModelBase {
 
   final List<StatefulWidget> fragments = [];
 
-  ViewModelFragmentTimesheet(this.topBarSize, this.serviceApi) {
+  ViewModelFragmentTest(this.topBarSize, this.serviceApi) {
     initListeners();
     init();
-    chatCompleteWithSSE();
+//    chatCompleteWithSSE();
   }
 
   Future<void> init() async {
-    final request = CompleteText(prompt: 'bana 20 adet ingilizce sorusu sor, şıklar ve cevaplar ile', model: Model.kTextDavinci3, maxTokens: 200);
-
-    final CTResponse? response = await openAI.onCompletion(request: request);
-
-    print(response);
+//    final request = CompleteText(prompt: 'bana 20 adet ingilizce sorusu sor, şıklar ve cevaplar ile', model: Model.kTextDavinci3, maxTokens: 200);
+//
+//     final CTResponse? response = await openAI.onCompletion(request: request);
+//
+//     print(response);
   }
 
   void initListeners() {

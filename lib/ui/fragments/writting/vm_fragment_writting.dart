@@ -1,5 +1,6 @@
 import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
+import 'package:languagex/core/enums/enum_app.dart';
 import 'package:languagex/ui/base/base_view_model.dart';
 
 import '../../../core/constant/constant_sort.dart';
@@ -30,9 +31,12 @@ class ViewModelFragmentWritting extends ViewModelBase {
   ViewModelFragmentWritting(this.topBarSize, this.serviceApi);
 
   Future<String> checkText(String text) async {
-    final request = CompleteText(prompt: 'show my mistakes on this essay'+text, model: Model.kTextDavinci3, maxTokens: 200);
+    final request = CompleteText(prompt: 'show my mistakes on this essay' + text, model: Model.kTextDavinci3, maxTokens: 200);
 
+    setActivityState(ActivityState.isLoading);
     final CTResponse? response = await openAI.onCompletion(request: request);
+    setActivityState(ActivityState.isLoaded);
     return response!.choices[0].text;
   }
+
 }

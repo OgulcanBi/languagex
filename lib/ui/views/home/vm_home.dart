@@ -3,10 +3,10 @@ import 'package:languagex/core/models/model_tab.dart';
 import 'package:languagex/core/services/service_api.dart';
 import 'package:languagex/ui/base/base_view_model.dart';
 import 'package:languagex/ui/fragments/home/fragment_home.dart';
-import 'package:languagex/ui/fragments/timesheet/fragment_timesheet.dart';
 
 import '../../../core/resources/_r.dart';
 import '../../fragments/speaking/fragment_speaking.dart';
+import '../../fragments/test/fragment_quiz.dart';
 import '../../fragments/writting/fragment_writting.dart';
 
 class ViewModelHome extends ViewModelBase {

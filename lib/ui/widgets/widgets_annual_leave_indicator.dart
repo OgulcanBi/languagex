@@ -28,6 +28,7 @@ class AnnualLeaveIndicator extends StatelessWidget {
 
   Widget _getCard(BuildContext context) {
     return Card(
+      color: R.color.gray.shade600,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
@@ -55,7 +56,7 @@ class AnnualLeaveIndicator extends StatelessWidget {
   Widget _getDescription() {
     return TextBasic(
       text: description,
-      color: R.color.gray.shade600,
+      color: R.color.white,
       fontFamily: R.fonts.interMedium,
       fontWeight: FontWeight.w500,
       fontSize: 16.0,
@@ -63,24 +64,10 @@ class AnnualLeaveIndicator extends StatelessWidget {
     );
   }
 
-  Widget _getSeeAll() {
-    return Container(
-      alignment: AlignmentDirectional.bottomEnd,
-      child: TextBasic(
-        text: R.string.seeDetails,
-        fontFamily: R.fonts.interSemiBold,
-        color: R.color.primary,
-        fontSize: 14.0,
-        fontWeight: FontWeight.w600,
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
   Widget _getRemainingDaysText() {
     return TextBasic(
       text: remainingDays.toString(),
-      color: R.color.gray.shade900,
+      color: R.color.white,
       fontFamily: R.fonts.interSemiBold,
       fontWeight: FontWeight.w600,
       fontSize: 30.0,
@@ -97,7 +84,7 @@ class AnnualLeaveIndicator extends StatelessWidget {
         Expanded(
           child: LinearIndicator(
               firstPercentage: (remainingDays.abs() / (totalDays == 0 ? 1 : totalDays) * 100).toInt(),
-              indicatorColor: remainingDays < 0 ? R.color.error.shade600 : R.color.primary),
+              indicatorColor: remainingDays < 0 ? R.color.error.shade600 : R.color.bottomNavigatorColor),
         ),
       ],
     );

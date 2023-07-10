@@ -29,7 +29,6 @@ class _FragmentSpeakingState extends State<FragmentSpeaking> with AutomaticKeepA
   final speechToText = SpeechToText();
   final flutterTts = FlutterTts();
   String lastWords = '';
-  final OpenAIService openAIService = OpenAIService();
   String? generatedContent;
   String? generatedImageUrl;
   int start = 200;
@@ -231,7 +230,7 @@ class _FragmentSpeakingState extends State<FragmentSpeaking> with AutomaticKeepA
                         if (await speechToText.hasPermission && speechToText.isNotListening) {
                           await startListening();
                         } else if (speechToText.isListening) {
-                          final speech = await openAIService.isArtPromptAPI(lastWords);
+                          final speech = await viewModel.getGPTResult("what is mtls");
                           if (speech.contains('https')) {
                             generatedImageUrl = speech;
                             generatedContent = null;

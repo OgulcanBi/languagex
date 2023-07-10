@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:languagex/ui/base/base_view.dart';
+import 'package:languagex/ui/fragments/test/screens/quiz_screen.dart';
+import 'package:languagex/ui/fragments/test/vm_fragment_quiz.dart';
 
 import '../../../core/resources/_r.dart';
-import 'vm_fragment_timesheet.dart';
 
 class FragmentTimesheet extends StatefulWidget {
   const FragmentTimesheet({Key? key}) : super(key: key);
@@ -18,9 +19,9 @@ class _FragmentTimesheetState extends State<FragmentTimesheet> with AutomaticKee
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return WidgetBase<ViewModelFragmentTimesheet>(
+    return WidgetBase<ViewModelFragmentTest>(
       isActiveLoadingIndicator: true,
-      model: ViewModelFragmentTimesheet(
+      model: ViewModelFragmentTest(
         systemPadding(context).top,
         apiService(context),
       ),
@@ -35,8 +36,7 @@ class _FragmentTimesheetState extends State<FragmentTimesheet> with AutomaticKee
   }
 
 
-  Widget _getBody(BuildContext context, ViewModelFragmentTimesheet viewModel) {
-    return Container(
-    );
+  Widget _getBody(BuildContext context, ViewModelFragmentTest viewModel) {
+    return QuizScreen();
   }
 }

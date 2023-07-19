@@ -16,17 +16,16 @@ import '../../../core/resources/_r.dart';
 import '../../widgets/widget_app_bar.dart';
 import '../../widgets/widget_textfield.dart';
 
-class FragmentWritting extends StatefulWidget {
-  const FragmentWritting({Key? key}) : super(key: key);
+class FragmentWriting extends StatefulWidget {
+  const FragmentWriting({Key? key}) : super(key: key);
 
   @override
-  State<FragmentWritting> createState() => _FragmentWrittingState();
+  State<FragmentWriting> createState() => _FragmentWritingState();
 }
 
-class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepAliveClientMixin<FragmentWritting>, BaseView {
+class _FragmentWritingState extends State<FragmentWriting> with AutomaticKeepAliveClientMixin<FragmentWriting>, BaseView {
   @override
   bool get wantKeepAlive => true;
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
   bool textScanning = false;
   XFile? imageFile;
   String scannedText = "";
@@ -34,9 +33,9 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return WidgetBase<ViewModelFragmentWritting>(
+    return WidgetBase<ViewModelFragmentWriting>(
       isActiveLoadingIndicator: true,
-      model: ViewModelFragmentWritting(
+      model: ViewModelFragmentWriting(
         systemPadding(context).top,
         apiService(context),
       ),
@@ -56,13 +55,13 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
             ],
           ),
           body: _getBody(context, viewModel),
-          bottomNavigationBar: _getTakePhotoButton(context,viewModel),
+          bottomNavigationBar: _getCheckMyEssayButton(context,viewModel),
         );
       },
     );
   }
 
-  AppBarBasic _getAppBar(BuildContext context, ViewModelFragmentWritting viewModel) {
+  AppBarBasic _getAppBar(BuildContext context, ViewModelFragmentWriting viewModel) {
     return AppBarBasic(
       bgColor: R.color.gray.shade700,
       leading: SvgPicture.asset(
@@ -73,7 +72,7 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
     );
   }
 
-  List<Widget> headerSliverBuilder(BuildContext context, ViewModelFragmentWritting viewModel) {
+  List<Widget> headerSliverBuilder(BuildContext context, ViewModelFragmentWriting viewModel) {
     return [
       SliverOverlapAbsorber(
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
@@ -126,18 +125,18 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
     ];
   }
 
-  Widget _getDescriptionField(BuildContext context, ViewModelFragmentWritting viewModel) {
+  Widget _getDescriptionField(BuildContext context, ViewModelFragmentWriting viewModel) {
     return FadeInRight(
       child: TextFieldBasic(
         controller: viewModel.descriptionController,
-        hintText: R.string.forecastReplyHint,
-        title: R.string.description,
+        hintText: 'Type on the keyboard or import an essay paper photo from the gallery, or take a photo of an essay paper...',
+        title: 'Essay',
         maxLines: viewModel.descriptionController.text.length > 100 ? 30 : 10,
       ),
     );
   }
 
-  Widget _getBody(BuildContext context, ViewModelFragmentWritting viewModel) {
+  Widget _getBody(BuildContext context, ViewModelFragmentWriting viewModel) {
     return SlideInLeft(
       child: SingleChildScrollView(
         child: Container(
@@ -147,66 +146,8 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
             children: [
               if (textScanning) const CircularProgressIndicator(),
               if (imageFile != null) Image.file(File(imageFile!.path)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(R.color.bottomNavigatorColor)),
-                      onPressed: () {
-                        getImage(ImageSource.gallery,viewModel);
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.image,
-                            size: 30,
-                          ),
-                          SizedBox(width: 4.0),
-                          TextBasic(
-                            text: "Gallery",
-                            color: Colors.white,
-                            fontFamily: R.fonts.interSemiBold,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(R.color.bottomNavigatorColor)),
-                      onPressed: () {
-                        getImage(ImageSource.camera,viewModel);
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.camera_alt,
-                            size: 30,
-                          ),
-                          SizedBox(width: 4.0),
-                          TextBasic(
-                            text: "Take a photo",
-                            color: Colors.white,
-                            fontFamily: R.fonts.interSemiBold,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _getPhoto(context, viewModel),
               _getDescriptionField(context, viewModel),
-
             ],
           ),
         ),
@@ -214,14 +155,75 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
     );
   }
 
-  void getImage(ImageSource source,ViewModelFragmentWritting viewModel) async {
+  Widget _getPhoto(BuildContext context, ViewModelFragmentWriting viewModel) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: ElevatedButton(
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(R.color.bottomNavigatorColor)),
+            onPressed: () {
+              getImage(ImageSource.gallery, viewModel);
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.image,
+                  size: 30,
+                ),
+                SizedBox(width: 4.0),
+                TextBasic(
+                  text: "Gallery",
+                  color: Colors.white,
+                  fontFamily: R.fonts.interSemiBold,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          ),
+        ),
+        SizedBox(width: 10),
+        Expanded(
+          child: ElevatedButton(
+            style: ButtonStyle(backgroundColor: MaterialStateProperty.all(R.color.bottomNavigatorColor)),
+            onPressed: () {
+              getImage(ImageSource.camera, viewModel);
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.camera_alt,
+                  size: 30,
+                ),
+                SizedBox(width: 4.0),
+                TextBasic(
+                  text: "Take a photo",
+                  color: Colors.white,
+                  fontFamily: R.fonts.interSemiBold,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void getImage(ImageSource source, ViewModelFragmentWriting viewModel) async {
     try {
       final pickedImage = await ImagePicker().pickImage(source: source);
       if (pickedImage != null) {
         textScanning = true;
         imageFile = pickedImage;
         setState(() {});
-        getRecognisedText(pickedImage,viewModel);
+        getRecognisedText(pickedImage, viewModel);
       }
     } catch (e) {
       textScanning = false;
@@ -231,7 +233,7 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
     }
   }
 
-  void getRecognisedText(XFile image,ViewModelFragmentWritting viewModel) async {
+  void getRecognisedText(XFile image, ViewModelFragmentWriting viewModel) async {
     final inputImage = InputImage.fromFilePath(image.path);
     final textDetector = GoogleMlKit.vision.textRecognizer();
     var recognisedText = await textDetector.processImage(inputImage);
@@ -248,7 +250,7 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
     setState(() {});
   }
 
-  Widget _getTakePhotoButton(BuildContext context,ViewModelFragmentWritting viewModel) {
+  Widget _getCheckMyEssayButton(BuildContext context, ViewModelFragmentWriting viewModel) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(8.0),
@@ -257,9 +259,10 @@ class _FragmentWrittingState extends State<FragmentWritting> with AutomaticKeepA
         onPressed: () async {
           String text = viewModel.descriptionController.text;
 
-          router(context).startNewView(route: FragmentWrittingResultRoute(result: await viewModel.checkText(text)));
+          int count = viewModel.countWords(text);
+          router(context).startNewView(route: FragmentWrittingResultRoute(result: await viewModel.checkText(text), wordsCount: count));
         },
-        text: 'test',
+        text: 'Check My Essay',
         fontFamily: R.fonts.interSemiBold,
         fontWeight: FontWeight.w600,
         fontSize: 14.0,

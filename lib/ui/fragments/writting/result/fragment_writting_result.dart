@@ -12,7 +12,8 @@ import '../../../../core/resources/_r.dart';
 
 class FragmentWrittingResult extends StatefulWidget {
   final String result;
-  const FragmentWrittingResult({Key? key, required this.result}) : super(key: key);
+  final int wordsCount;
+  const FragmentWrittingResult({Key? key, required this.result, required this.wordsCount}) : super(key: key);
 
   @override
   State<FragmentWrittingResult> createState() => _FragmentWritingResultState();
@@ -53,6 +54,7 @@ class _FragmentWritingResultState extends State<FragmentWrittingResult> with Aut
   }
 
   Widget _getBody(BuildContext context, ViewModelFragmentWritingResult viewModel) {
+    int score = viewModel.getScore(widget.result);
     return SlideInLeft(
       child: SingleChildScrollView(
         child: Container(
@@ -62,7 +64,6 @@ class _FragmentWritingResultState extends State<FragmentWrittingResult> with Aut
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 16),
-
               SvgPicture.asset(
                 R.drawable.svg.writingResult,
                 height: 20.0,
@@ -76,20 +77,37 @@ class _FragmentWritingResultState extends State<FragmentWrittingResult> with Aut
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 8),
-
               TextBasic(
                 text: "Upload your essays and let’s score!",
                 fontFamily: R.fonts.interRegular,
                 fontSize: 16.0,
                 textAlign: TextAlign.center,
-
-
               ),
               SizedBox(height: 16),
-
-              AnnualLeaveIndicator(description: "Your overall score is 10% ", totalDays: 100, remainingDays: 10),
+              Row(
+                children: [
+                  TextBasic(
+                    text: widget.wordsCount.toString(),
+                    fontFamily: R.fonts.interBold,
+                    fontSize: 24.0,
+                    textAlign: TextAlign.center,
+                    color: R.color.primary,
+                  ),
+                  TextBasic(
+                    text: ' Words', //TODO string const
+                    fontFamily: R.fonts.interBold,
+                    fontSize: 24.0,
+                    textAlign: TextAlign.center,
+                    color: R.color.primary,
+                  ),
+                ],
+              ),
+              SizedBox(height: 16),
+              AnnualLeaveIndicator(
+                  description: 'Your overall score is: ' + viewModel.getScore(widget.result).toString() + '%',
+                  totalDays: 100,
+                  remainingDays: viewModel.getScore(widget.result)),
               SizedBox(height: 8),
-
               TextBasic(
                 text: "Your Mistakes",
                 color: R.color.black,
@@ -100,7 +118,7 @@ class _FragmentWritingResultState extends State<FragmentWrittingResult> with Aut
               ),
               SizedBox(height: 16),
               TextBasic(
-                text: widget.result,
+                text: viewModel.getMistakes(widget.result),
                 fontFamily: R.fonts.interRegular,
                 fontSize: 16.0,
                 textAlign: TextAlign.center,

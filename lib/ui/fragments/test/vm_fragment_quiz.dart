@@ -2,7 +2,7 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:languagex/core/models/chatgpt_model.dart';
 import 'package:languagex/ui/base/base_view_model.dart';
-import 'package:languagex/ui/fragments/speaking/secrets.dart';
+import 'package:languagex/core/secrets.dart';
 
 import '../../../core/enums/enum_app.dart';
 import '../../../core/services/service_api.dart';
@@ -36,25 +36,6 @@ class ViewModelFragmentTest extends ViewModelBase {
       () {
         scrollPadding = scrollController.position.pixels > tabBarHeight * 4 + topBarSize ? tabBarHeight : 0.0;
         notifyListeners();
-      },
-    );
-  }
-
-  Future<void> chat() async {
-    setActivityState(ActivityState.isLoading);
-    await serviceApi.client
-        .chat(
-      ChatgptModel(
-        model: "gpt-3.5-turbo",
-        messages: [Messages(role: 'user', content: 'How are you')],
-      ),
-    )
-        .then(
-      (response) {
-        print(response.toString());
-      },
-      onError: (error) {
-        handleApiError(error);
       },
     );
   }

@@ -9,6 +9,8 @@ class ViewModelFragmentSpeaking extends ViewModelBase {
   final ScrollController scrollController = ScrollController();
   double scrollPadding = 0.0;
   final double topBarSize;
+  final TextEditingController descriptionController = TextEditingController();
+
 
   final List<Tab> tabs = [];
   bool hasApprovePermission = false;

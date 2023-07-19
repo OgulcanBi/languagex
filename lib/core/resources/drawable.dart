@@ -8,6 +8,7 @@ class _SvgDrawable {
   final String tr = 'assets/svg/tr.svg';
   final String en = 'assets/svg/en.svg';
   final String logo = 'assets/svg/logo.svg';
+  final String avatar = 'assets/svg/avatar.svg';
   final String success = 'assets/svg/success.svg';
   final String approvementSuccess = 'assets/svg/approvement_success.svg';
   final String error = 'assets/svg/error.svg';

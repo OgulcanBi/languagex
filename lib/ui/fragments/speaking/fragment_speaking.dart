@@ -142,7 +142,7 @@ class _FragmentSpeakingState extends State<FragmentSpeaking> with AutomaticKeepA
             if (await speechToText.hasPermission && speechToText.isNotListening) {
               await startListening();
             } else if (speechToText.isListening) {
-              final speech = await viewModel.getGPTResult("lastWords");
+              final speech = await viewModel.checkText(lastWords);
               if (speech.contains('https')) {
                 generatedImageUrl = speech;
                 generatedContent = null;
@@ -189,6 +189,11 @@ class _FragmentSpeakingState extends State<FragmentSpeaking> with AutomaticKeepA
         bgColor: R.color.bottomNavigatorColor,
         onPressed: () async {
           String text = viewModel.descriptionController.text;
+          final speech = await viewModel.checkText(text);
+          await systemSpeak(speech);
+          generatedContent = speech;
+
+
         },
         child: Icon(Icons.send),
         fontFamily: R.fonts.interSemiBold,

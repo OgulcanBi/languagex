@@ -1,3 +1,4 @@
+import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:languagex/core/enums/enum_app.dart';
 import 'package:languagex/core/extensions/extension_list.dart';
@@ -9,6 +10,8 @@ class ViewModelFragmentSpeaking extends ViewModelBase {
   final ScrollController scrollController = ScrollController();
   double scrollPadding = 0.0;
   final double topBarSize;
+  final TextEditingController descriptionController = TextEditingController();
+
 
   final List<Tab> tabs = [];
   bool hasApprovePermission = false;
@@ -27,6 +30,14 @@ class ViewModelFragmentSpeaking extends ViewModelBase {
     });
   }
 
+  Future<String> checkText(String text) async {
+    final request = CompleteText(prompt: text, model: Model.kTextDavinci3, maxTokens: 200);
+
+    setActivityState(ActivityState.isLoading);
+    final CTResponse? response = await openAI.onCompletion(request: request);
+    setActivityState(ActivityState.isLoaded);
+    return response!.choices[0].text;
+  }
 
 
 }

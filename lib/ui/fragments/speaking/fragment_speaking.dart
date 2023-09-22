@@ -11,9 +11,8 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../../core/resources/_r.dart';
-import '../../widgets/feature_box.dart';
 import '../../widgets/widget_app_bar.dart';
-import 'openai_service.dart';
+import '../../widgets/widget_textfield.dart';
 import 'vm_fragment_speaking.dart';
 
 class FragmentSpeaking extends StatefulWidget {
@@ -82,176 +81,43 @@ class _FragmentSpeakingState extends State<FragmentSpeaking> with AutomaticKeepA
   Widget build(BuildContext context) {
     super.build(context);
     return WidgetBase<ViewModelFragmentSpeaking>(
-        isActiveLoadingIndicator: true,
-        model: ViewModelFragmentSpeaking(systemPadding(context).top),
-        builder: (context, viewModel) => Scaffold(
-              backgroundColor: R.color.viewBg,
-              body: ScaffoldGradientBackground(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomLeft,
-                    end: Alignment.topRight,
-                    colors: [
-                      R.color.gray.shade300,
-                      R.color.gray.shade400,
-                    ],
-                  ),
-                  appBar: _getAppBar(
-                    context,
-                    viewModel,
-                  ),
-                  body: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        // virtual assistant picture
-                        ZoomIn(
-                          child: Stack(
-                            children: [
-                              Center(
-                                child: Container(
-                                  height: 120,
-                                  width: 120,
-                                  margin: const EdgeInsets.only(top: 4),
-                                  decoration: BoxDecoration(
-                                    color: R.color.primary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: 123,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // chat bubble
-                        FadeInRight(
-                          child: Visibility(
-                            visible: generatedImageUrl == null,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                                vertical: 10,
-                              ),
-                              margin: const EdgeInsets.symmetric(horizontal: 40).copyWith(
-                                top: 30,
-                              ),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: R.color.primary,
-                                ),
-                                borderRadius: BorderRadius.circular(20).copyWith(
-                                  topLeft: Radius.zero,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                                child: Text(
-                                  generatedContent == null ? 'Good Morning, what task can I do for you?' : generatedContent!,
-                                  style: TextStyle(
-                                    fontFamily: 'Cera Pro',
-                                    color: R.color.primary,
-                                    fontSize: generatedContent == null ? 25 : 18,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        if (generatedImageUrl != null)
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.network(generatedImageUrl!),
-                            ),
-                          ),
-                        SlideInLeft(
-                          child: Visibility(
-                            visible: generatedContent == null && generatedImageUrl == null,
-                            child: Container(
-                              padding: const EdgeInsets.all(10),
-                              alignment: Alignment.centerLeft,
-                              margin: const EdgeInsets.only(top: 10, left: 22),
-                              child: Text(
-                                'Here are a few features',
-                                style: TextStyle(
-                                  fontFamily: 'Cera Pro',
-                                  color: R.color.primary,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        // features list
-                        Visibility(
-                          visible: generatedContent == null && generatedImageUrl == null,
-                          child: Column(
-                            children: [
-                              SlideInLeft(
-                                delay: Duration(milliseconds: start),
-                                child: FeatureBox(
-                                  color: R.color.primary,
-                                  headerText: 'ChatGPT',
-                                  descriptionText: 'A smarter way to stay organized and informed with ChatGPT',
-                                ),
-                              ),
-                              SlideInLeft(
-                                delay: Duration(milliseconds: start + delay),
-                                child: FeatureBox(
-                                  color: R.color.primary.shade500,
-                                  headerText: 'Dall-E',
-                                  descriptionText: 'Get inspired and stay creative with your personal assistant powered by Dall-E',
-                                ),
-                              ),
-                              SlideInLeft(
-                                delay: Duration(milliseconds: start + 2 * delay),
-                                child: FeatureBox(
-                                  color: R.color.primary,
-                                  headerText: 'Smart Voice Assistant',
-                                  descriptionText: 'Get the best of both worlds with a voice assistant powered by Dall-E and ChatGPT',
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  floatingActionButton: ZoomIn(
-                    delay: Duration(milliseconds: start + 3 * delay),
-                    child: FloatingActionButton(
-                      backgroundColor: R.color.primary,
-                      onPressed: () async {
-                        if (await speechToText.hasPermission && speechToText.isNotListening) {
-                          await startListening();
-                        } else if (speechToText.isListening) {
-                          final speech = await viewModel.getGPTResult("what is mtls");
-                          if (speech.contains('https')) {
-                            generatedImageUrl = speech;
-                            generatedContent = null;
-                            setState(() {});
-                          } else {
-                            generatedImageUrl = null;
-                            generatedContent = speech;
-                            setState(() {});
-                            await systemSpeak(speech);
-                          }
-                          await stopListening();
-                        } else {
-                          initSpeechToText();
-                        }
-                      },
-                      child: Icon(
-                        speechToText.isListening ? Icons.stop : Icons.mic,
-                      ),
-                    ),
-                  )),
-            ));
+      isActiveLoadingIndicator: true,
+      model: ViewModelFragmentSpeaking(systemPadding(context).top),
+      builder: (context, viewModel) => Scaffold(
+        backgroundColor: R.color.viewBg,
+        body: ScaffoldGradientBackground(
+          gradient: LinearGradient(
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+            colors: [
+              R.color.gray.shade300,
+              R.color.gray.shade400,
+            ],
+          ),
+          appBar: _getAppBar(
+            context,
+            viewModel,
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 8.0,
+                ),
+                // virtual assistant picture
+                SvgPicture.asset(
+                  R.drawable.svg.avatar,
+                  height: 200.0,
+                ),
+                _getSpeakButton(context, viewModel),
+                _getDescriptionField(context, viewModel),
+                _getSendButton(context, viewModel)
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   AppBarBasic _getAppBar(BuildContext context, ViewModelFragmentSpeaking viewModel) {
@@ -264,6 +130,79 @@ class _FragmentSpeakingState extends State<FragmentSpeaking> with AutomaticKeepA
       bottomBorderColor: R.color.primary,
     );
   }
+
+  Widget _getSpeakButton(BuildContext context, ViewModelFragmentSpeaking viewModel) {
+    return ZoomIn(
+      delay: Duration(milliseconds: start + 3 * delay),
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: ButtonBasic(
+          bgColor: R.color.bottomNavigatorColor,
+          onPressed: () async {
+            if (await speechToText.hasPermission && speechToText.isNotListening) {
+              await startListening();
+            } else if (speechToText.isListening) {
+              final speech = await viewModel.checkText(lastWords);
+              if (speech.contains('https')) {
+                generatedImageUrl = speech;
+                generatedContent = null;
+                setState(() {});
+              } else {
+                generatedImageUrl = null;
+                generatedContent = speech;
+                setState(() {});
+                await systemSpeak(speech);
+              }
+              await stopListening();
+              viewModel.descriptionController.text = lastWords;
+            } else {
+              initSpeechToText();
+            }
+          },
+          child: Icon(size: 48,
+            speechToText.isListening ? Icons.stop : Icons.mic,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _getDescriptionField(BuildContext context, ViewModelFragmentSpeaking viewModel) {
+    return FadeInRight(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextFieldBasic(
+          controller: viewModel.descriptionController,
+          hintText: 'Type on the keyboard or import an essay paper photo from the gallery, or take a photo of an essay paper...',
+          title: 'Essay',
+          maxLines: 5,
+        ),
+      ),
+    );
+  }
+
+  Widget _getSendButton(BuildContext context, ViewModelFragmentSpeaking viewModel) {
+    return Container(
+      alignment: Alignment.bottomRight,
+      padding: EdgeInsets.all(8.0),
+      child: ButtonBasic(
+        bgColor: R.color.bottomNavigatorColor,
+        onPressed: () async {
+          String text = viewModel.descriptionController.text;
+          final speech = await viewModel.checkText(text);
+          await systemSpeak(speech);
+          generatedContent = speech;
+
+
+        },
+        child: Icon(Icons.send),
+        fontFamily: R.fonts.interSemiBold,
+        fontWeight: FontWeight.w600,
+        fontSize: 14.0,
+      ),
+    );
+  }
+
 
   List<Widget> headerSliverBuilder(BuildContext context, ViewModelFragmentSpeaking viewModel) {
     return [

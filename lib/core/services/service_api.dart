@@ -12,7 +12,7 @@ import 'package:languagex/core/models/chatgpt_model.dart';
 import 'package:languagex/core/resources/_r.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../ui/fragments/speaking/secrets.dart';
+import '../secrets.dart';
 import '../models/model_user_wbs.dart';
 
 part 'service_api.g.dart';
@@ -20,9 +20,6 @@ part 'service_api.g.dart';
 @RestApi(parser: Parser.DartJsonMapper)
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String? baseUrl}) = _ApiClient;
-
-  @POST('chat/completions')
-  Future<ChatgptResponse> chat(@Body() ChatgptModel body);
 
   @GET('/employment/Expense/GetUserAssignedWBS')
   Future<ResponseUserWBS> getUserAssignedWBS();

@@ -30,7 +30,7 @@ class ViewModelHome extends ViewModelBase {
   }
 
   init() {
-    fragments.add(const FragmentWritting());
+    fragments.add(const FragmentWriting());
     tabs.add(ModelTab(title: R.string.writing, activeIcon: R.drawable.svg.iconFinanceActive, inActiveIcon: R.drawable.svg.iconFinanceInactive));
     fragments.add(FragmentSpeaking(key: expenseKey));
     tabs.add(ModelTab(title: R.string.speaking, activeIcon: R.drawable.svg.iconExpenseActive, inActiveIcon: R.drawable.svg.iconExpenseInactive));

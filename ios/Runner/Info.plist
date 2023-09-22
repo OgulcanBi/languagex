@@ -23,17 +23,17 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>googlegmail</string>
-        <string>x-dispatch</string>
-        <string>readdle-spark</string>
-        <string>airmail</string>
-        <string>ms-outlook</string>
-        <string>ymail</string>
-        <string>fastmail</string>
-        <string>superhuman</string>
-        <string>protonmail</string>
-    </array>
+	<array>
+		<string>googlegmail</string>
+		<string>x-dispatch</string>
+		<string>readdle-spark</string>
+		<string>airmail</string>
+		<string>ms-outlook</string>
+		<string>ymail</string>
+		<string>fastmail</string>
+		<string>superhuman</string>
+		<string>protonmail</string>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -60,5 +60,7 @@
 	<string>Languagex dosya yükleyebilmeniz için dosyalarınıza erişim izni istiyor</string>
 	<key>com.apple.security.print</key>
 	<true/>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>test</string>
 </dict>
 </plist>

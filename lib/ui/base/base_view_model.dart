@@ -5,7 +5,7 @@ import 'package:languagex/core/resources/_r.dart';
 import 'package:property_change_notifier/property_change_notifier.dart';
 
 import '../../core/enums/enum_app.dart';
-import '../fragments/speaking/secrets.dart';
+import '../../core/secrets.dart';
 
 abstract class ViewModelBase extends ChangeNotifier {
   ActivityState activityState = ActivityState.isLoaded;
